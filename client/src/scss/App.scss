@@ -1,0 +1,148 @@
+// SCSS variables
+$primary-background-color: #9da39a;
+$header-background-color: #b5f44a;
+$navigation-background-color: #54494b;
+$link-hover-color: #fc69b9;
+$link-color: #61dafb;
+$text-color: #54494b;
+$border-color: #ccc;
+$text-size: 14px;
+
+@mixin fontFamily {
+  font-family: 'Palatino', 'Palatino Linotype', serif;
+}
+
+.App {
+  text-align: center;
+
+  &-logo {
+    height: 40vmin;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+  body {
+    background-color: $primary-background-color;
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+  }
+
+  .header {
+    background-color: $header-background-color;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(20px + 2vmin);
+    color: $text-color;
+    font-weight: bold;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    @include fontFamily; // Use the mixin
+  }
+
+  .navigation {
+    background-color: $navigation-background-color;
+    overflow: hidden;
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    z-index: 1000;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      @include fontFamily; // Use the mixin
+
+      &:hover {
+        background-color: $link-hover-color;
+      }
+    }
+  }
+
+  .App-link {
+    color: $link-color;
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .word {
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #4d6cfa;
+  }
+
+  .word-found {
+    color: #e6e8e6;
+    text-decoration: line-through;
+  }
+
+  &-border {
+    border: 1px solid $border-color;
+    padding: 10px;
+  }
+
+  &-nested {
+    color: $text-color;
+
+    &-hover {
+      background-color: lighten($link-hover-color, 10%);
+    }
+  }
+
+  @mixin boxMixin($width, $height) {
+    width: $width;
+    height: $height;
+  }
+
+  &-box {
+    @include boxMixin(50px, 50px);
+  }
+
+  @function calculateFontSize($baseSize, $increase) {
+    @return $baseSize + $increase;
+  }
+
+  &-text {
+    font-size: calculateFontSize($text-size, 2px);
+  }
+
+  @if 1 + 1 == 2 {
+    .result {
+      color: green;
+    }
+  }
+
+  @error "This is an error message";
+}
